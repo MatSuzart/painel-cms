@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admmin\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Iluminate\Support\Facades\Auth;
+use Iluminate\Support\Facades\Validator;
+Use iluminate\Httpt\Request;
 
 class LoginController extends Controller
 {
@@ -40,5 +43,40 @@ class LoginController extends Controller
 
     public function index(){
         return view ('admin.login');
+    }
+
+    public function authenticate(Request $request){
+        $data= $request->only([
+            'email',
+            'password',
+            'remeber'
+        ]);
+        $validator = $this->validator($data);
+
+        if($validator->fails()){
+            return redirect()->route('login')->withErrors($validator)->withInput();
+        }
+
+        if(Auth::attempt($data)){
+            return redict()->route('admin');
+        }else{
+
+            $validator->errors()->add('password','E-mail e/ou senha errados');
+
+            return redirect()->route('login')->withErros($validator)->withInput();
+        }
+
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
+    }
+
+    protected function validator(array $data){
+        return Validator::make($data, [
+        'email'=>['required', 'string', 'email','max:100'],
+        'password'=>['required','string','min:4']
+     ]);
     }
 }

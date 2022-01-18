@@ -18,5 +18,11 @@ Route::get('/', 'Site\HomeController@index');
 Route::prefix('paniel')->group(function(){
     Route::get('/', 'Admin\HomeController@index')->name('admin');
     Route::get('login', 'Admin\Auth\LoginController@index')->name('admin');
+    Route::post('login', 'Admin\Auth\LoginController@authenticate');
+
+    Route::get('register','Admin\Auth\LoginController@index')->name('register');
+    Route::post('register','Admin\Auth\LoginController@register');
+
+    Route::post('login', 'Admin\Auth\loginController@logout')->name('logout');
 
 });
