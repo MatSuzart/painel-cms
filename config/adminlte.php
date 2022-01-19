@@ -227,9 +227,9 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
+         //   'type'         => 'navbar-search',
+         //   'text'         => 'search',
+         //   'topnav_right' => true,
         ],
         [
             'type'         => 'fullscreen-widget',
@@ -245,6 +245,16 @@ return [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
+        ],
+        [
+            'text' => 'Meus Usuarios',
+            'url'  => 'painel/users',
+            'can'  => 'far fa-fw fa-file',
+        ],
+        [
+            'text' => 'Minhas paginas',
+            'url'  => 'painel',
+            'can'  => 'far fa-fw fa-file',
         ],
         [
             'text'        => 'pages',
@@ -302,6 +312,7 @@ return [
                 ],
             ],
         ],
+        ['header' => 'account_settings'],
         ['header' => 'labels'],
         [
             'text'       => 'important',

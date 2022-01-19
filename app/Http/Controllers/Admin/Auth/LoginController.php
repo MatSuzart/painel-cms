@@ -48,16 +48,18 @@ class LoginController extends Controller
     public function authenticate(Request $request){
         $data= $request->only([
             'email',
-            'password',
-            'remeber'
+            'password'
         ]);
+        
         $validator = $this->validator($data);
+
+        $remeber = $request->input('remember', false);
 
         if($validator->fails()){
             return redirect()->route('login')->withErrors($validator)->withInput();
         }
 
-        if(Auth::attempt($data)){
+        if(Auth::attempt($data, $remember)){
             return redict()->route('admin');
         }else{
 
