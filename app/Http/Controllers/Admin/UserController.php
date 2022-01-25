@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
 
         return view('admin.users.index', [
             'users'=> $users
@@ -78,7 +78,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -89,7 +89,16 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $user = User::find($id);
+
+        if($user){
+            return view('admin.users.edit',[
+                'user'=>$user
+            ]);
+        }
+
+        return redirect()->route('users.admin.index');
     }
 
     /**
@@ -101,7 +110,68 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        if($user){
+
+            $data = $request->only([
+                'name',
+                'email',
+                'passwrd',
+                'password_confirmed'
+            ]);
+
+            $validator = Validate::make([
+                'name'=> $data['name'],
+                'email'=> $data['email']
+            ],[
+                'name'=>['required','string','max:100'],
+                'name'=>['required','string','email','max:100']
+            ]);
+
+        }
+
+        $users->name = $data['name'];
+        if($users->email != $data['email']){
+            $hasEmail = User::where('email', $data['email'])->get();
+            if(count(hasEmail)==0){
+                $user->email = $data['email'];
+            }else{
+                $validator->erros()->add('password',___('validation.unique.email',[
+                    'attribute'=> 'email'
+               ]));
+
+               return redirect()->route('users.edit',[
+                   'user'=> $id
+               ])->withErrors($validator);
+            }
+        }
+
+        if(!empty($data['password'])){
+            if(strlen($data['password'])>=4){
+            if($data['password'] ==$data['password_confirmation']){
+                $user->password = Hash::make($data['password']);
+            }else{
+                $validator->erros()->add('password',___('validation.confirmed.password',[
+                    'attribute'=> 'password'
+               ]));
+            }
+        }
+    }else {
+        $validator->erros()->add('password',___('validation.min.string',[
+             'attribute'=> 'password',
+             'min'=>4
+        ]));
+        if(count($validator->erros())>0){
+            return redirect()->route('users.edit',[
+                'user'=> $id
+            ])->withErrors($validator);
+        }
+        $user->save();
+      }
+
+      return redirect()->route('users.index');
+
     }
 
     /**
