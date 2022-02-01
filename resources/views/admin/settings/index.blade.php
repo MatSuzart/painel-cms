@@ -25,7 +25,7 @@
             {{session('warning')}}
         </div>
     @endif
-    
+
 <div class="card">
 
     <div class="card">
@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 col-form-label">Cor do fundo</label>
                     <div class="col-sm-10">
-                        <input type="color" name="bgcolor" value="{{$setting['bgcolor']}}"  class="form-control"/>
+                        <input type="color" name="bgcolor" value="{{$setting['bgcolor']}}"  class="form-control" style="with:70px"/>
                     </div>
                 </div>
 
@@ -68,7 +68,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 col-form-label">Cor do texto</label>
                     <div class="col-sm-10">
-                        <input type="color" name="textcolor" value="{{$setting['textcolor']}}"  class="form-control"/>
+                        <input type="color" name="textcolor" value="{{$setting['textcolor']}}"  class="form-control" style="with:70px"/>
                     </div>
                 </div>
 

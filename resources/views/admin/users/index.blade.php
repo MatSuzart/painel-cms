@@ -8,7 +8,7 @@
 
 <h1>
     Meus Usuários
-    <a href="" class="btn btn-sm btn-success">Novo Usuário</a>
+    <a href="{{route('users.create')}}" class="btn btn-sm btn-success">Novo Usuário</a>
 <h1>
 
 @endsection('content')
