@@ -11,6 +11,21 @@
 
 @section('content')
     <div class="row">
+        <div class="col-md-6">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="col-md-6">
+            <form action="" method="get">
+            <select onChange="this.form.submit()" name="inteval" id="" class="float-md-right">
+                <option {{$dateInterval==30?'selected="selected"' :''}} value="30">30</option>
+                <option {{$dateInterval==60?'selected="selected"' :''}} value="60">60</option>
+                <option {{$dateInterval==120?'selected="selected"' :''}} value="120">6 meses</option>
+            </select>
+        </div>
+        </form>
+    </div>
+
+    <div class="row">
         <div calss="col-md-3">
             <div class="small-box bg-info">
                 <div class="inner">
