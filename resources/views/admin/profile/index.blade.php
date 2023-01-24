@@ -37,7 +37,7 @@
 
 
             <div class="form-group">
-                <label class="col-sm-2 col-form-label">Senha</label>
+                <label class="col-sm-2 col-form-label">Password</label>
             </div>
             <div class="col-sm-10">
                 <input type="password" name="password" value="{{old('$user->password')}}" class="form-control @error('password') is-invalide @enderror" />
