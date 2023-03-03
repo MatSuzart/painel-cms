@@ -2,3 +2,7 @@
 
 
 @section('title', 'TITULO DE TESTE')
+
+@section('content')
+
+@endsection
