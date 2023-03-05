@@ -49,10 +49,11 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="index.html">home</a></li>
-                                        <li><a href="features.html">Features</a></li>
-                                        <li><a href="Pricing.html">Pricing</a></li>
-                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
+                                        foreach($front_menu as $menuslug =>$menutitle)
+                                            <li>
+                                                <a href="{{$menuslug}}">{{$menutitle}}</a>
+                                            </li>
+                                        @endforeach
                                             <ul class="submenu">
                                                 <li><a href="blog.html">blog</a></li>
                                                 <li><a href="single-blog.html">single-blog</a></li>
@@ -69,10 +70,7 @@
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="Appointment">
-                                <div class="book_btn d-none d-lg-block">
-                                    <a  href="#">Download</a>
-                                </div>
+
                             </div>
                         </div>
                         <div class="col-12">
@@ -97,7 +95,7 @@
                         <div class="footer_widget">
                             <div class="footer_logo">
                                 <a href="#">
-                                    <img src="img/logo.png" alt="">
+                                    <img src="{{'assets/img/logo.png')}}" alt="">
                                 </a>
                             </div>
                             <p>
