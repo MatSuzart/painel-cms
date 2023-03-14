@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Iluminate\Support\Facades\View;
 use App\Page;
+use App\Setting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,5 +38,15 @@ class AppServiceProvider extends ServiceProvider
 
 
         View::share('front-menu', $frontMenu);
+
+        $config = [];
+        $setting = Setting::all();
+
+        foreach($settings as $setting){
+            $config [$setting['name']] =$setting['content'];
+        }
+
+        View::share('front-config', $config);
+
     }
 }
